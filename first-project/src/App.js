@@ -1,6 +1,6 @@
 import React,{ useEffect } from 'react';
 import './App.styl';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Course from './pages/course/Course';
 import Discover from './pages/discover/Discover';
 import Mine from './pages/mine/Mine';
@@ -8,6 +8,7 @@ import Study from './pages/study/Study';
 import './mock/data';
 import axios from 'axios';
 import './assets/font/iconfont.css'
+import Footer from './pages/discover/footer/Footer';
 
 function App() {
   useEffect(() => {
@@ -22,28 +23,7 @@ function App() {
       <Route path="/study" component={Study} />
       <Route path="/mine" component={Mine} />
 
-      <div className="footer">
-        <div>
-          <Link to="/">
-            <div>发现</div>
-          </Link>
-        </div>
-        <div>
-          <Link to="/course">
-            <div>讲堂</div>
-          </Link>
-        </div>
-        <div>
-          <Link to="/study">
-            <div>学习</div>
-          </Link>
-        </div>
-        <div>
-          <Link to="/mine">
-            <div>我的</div>
-          </Link>
-        </div>
-      </div>
+      <Footer />
     </BrowserRouter>
   );
 }
