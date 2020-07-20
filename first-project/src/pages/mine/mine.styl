@@ -1,6 +1,5 @@
 .mine
-    padding-left 0.533333rem
-    padding-right 0.533333rem
+    padding 0 0.533333rem
     .mine-header-wrapper
         background-color #fff
         position fixed
@@ -12,6 +11,10 @@
         text-align center
         span 
             font-size 18px  
+        .icon
+            position absolute
+            right .533333rem
+            color #999999
     .mine-info-wrapper
         background-color #fff
         padding-top: .293333rem
@@ -30,24 +33,29 @@
             .name
                 height 1.333333rem
                 line-height 1.333333rem
-                font-size 20px
+                font-size .533333rem
             .phone-and-selfPage
                 display flex
                 justify-content center
                 align-items center
-                font-size 11px
+                font-size .293333rem
                 .phone
                     flex 1
                 .selfPage
                     width 1.786667rem
                     color #fa8919
                     .icon
-                        font-size 11px
-    .swiper-wrapper
-        background-color #fff
-        margin-top .72rem
-        height 1.333333rem
-        background-color #aaa
-        margin-bottom .613333rem
-       
+                        font-size .293333rem
+    .slider-container
+        overflow hidden
+        .swiper-wrapper
+            height 1.333333rem
+            background-color #fff
+            margin-top .72rem
+            margin-bottom .613333rem
+            .swiper-slide
+                width 100%
+                border-radius 5px
+                overflow hidden
+        
             
