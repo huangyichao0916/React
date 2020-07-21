@@ -4,48 +4,62 @@ import avatar from '@/assets/imgs/avatar.JPG';
 import MineItem from './mineItem/MineItem'
 import Swiper from "swiper"
 import "swiper/css/swiper.min.css";
+import axios from 'axios';
+import classNames from 'classnames';
+import {connect} from 'react-redux'
+import {addDataToMinePageActionCreator} from '@/store/action'
 
 class Mine extends Component {
-    state = {
-        items:[
-            {
-                isCountShow:true,
-                isDotShow:true,
-                title:'账户',
-                icon:'&#xe8d5;',
-            },
-            {
-                isCountShow:false,
-                isDotShow:false,
-                title:'账户',
-                icon:'&#xe8d5;',
-            },
-        ]
-    }
     componentDidMount() {
         new Swiper(".slider-container", {
             loop: true,
             autoplay: {
                 delay: 2000,
             },
-            // pagination: {
-            //   el: '.swiper-pagination',
-            //   type: 'bullets',
-            // }
+        })
+        // console.log(this.props.items.size)
+        if (this.props.items.size > 0) {
+            return;
+        }
+        axios.get('/mine/mineItem.json')
+        .then(res => res.data.items)
+        .then(res => {
+            this.props.loadData(res)
+            // console.log('reload');
         })
     }
     render() {
-        let {items} = this.state;
-        items = items.map((i,index) => {
+        // console.log('Mine组件重新渲染了');
+        let {items} = this.props;
+        items = items.map(i => {
+            let id = i.getIn(['id']);
+            let title = i.getIn(['title']);
+            let isBalanceShow = i.getIn(['isBalanceShow']);
+            let linkTo = i.getIn(['linkTo']);
+            let isDotShow = i.getIn(['isDotShow']);
+            let icon = i.getIn(['icon']);
+
+            const myClassName = classNames({
+                'mine-item-wrapper':true,
+                'hidden':isBalanceShow === 1?false:true,
+            })
             return(
-                <MineItem {...i}/>
+                <MineItem 
+                    title={title}
+                    linkTo={linkTo}
+                    myClassName={myClassName}
+                    isDotShow={isDotShow}
+                    id={id}
+                    key={id}
+                    icon={icon}
+                />
             )
         })
         return (
             <div className="mine">
                 <div className="mine-header-wrapper">
                     <span>我的</span>
-                    <span class="icon iconfont">&#xe665;</span>
+                    <span className="icon iconfont">&#xe665;</span>
                 </div>
                 <div className="mine-info-wrapper">
                     <div className="avatar">
@@ -70,10 +84,23 @@ class Mine extends Component {
                         </div>
                     </div>
                 </div>
-                {items}
+                {items.size && items}
             </div>
         );
     }
 }
 
-export default Mine;
+const mapStateToProps = state => {
+    return{
+        items : state.getIn(['mineItemDateSource']),
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return{
+        loadData:(data) => {
+            dispatch(addDataToMinePageActionCreator(data));
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Mine);

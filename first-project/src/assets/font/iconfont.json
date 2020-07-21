@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2257009",
+      "name": "return",
+      "font_class": "return",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "6683974",
+      "name": "book",
+      "font_class": "book",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "7281400",
+      "name": "discover",
+      "font_class": "discover",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "7675623",
+      "name": "mine_normal",
+      "font_class": "mine",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "11264866",
+      "name": "Clock",
+      "font_class": "Clock",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "11726791",
+      "name": "fire",
+      "font_class": "fire",
+      "unicode": "e85f",
+      "unicode_decimal": 59487
+    },
+    {
+      "icon_id": "13291378",
+      "name": "hat",
+      "font_class": "hat",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
       "icon_id": "13097296",
       "name": "next",
       "font_class": "next",
