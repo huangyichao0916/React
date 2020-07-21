@@ -1,14 +1,12 @@
+//account相关的action creator
 export const BUY_LESSON = 'BUY_LESSON';
 export const RECHARGE = 'RECHARGE';
-
-//account相关的action creator
 export const buyLessonActionCreator = payload => {
     return {
         type:BUY_LESSON,
         payload
     }
 }
-
 export const rechargeActionCreator = payload => {
     return {
         type:RECHARGE,
@@ -35,6 +33,15 @@ export const setIsDotedToTrueActionCreator = payload => {//现在的payload是mi
 export const setIsDotedToFalseActionCreator = payload => {//现在的payload是mineItem的key
     return{
         type:SET_IS_DOTED_TO_FALSE,
+        payload
+    }
+}
+
+//courseLessonItem相关的action creator
+export const ADD_DATA_TO_COURSE_LESSON = 'ADD_DATA_TO_COURSE_LESSON';
+export const addDataToCourseLessonActionCreator = payload => {
+    return {
+        type:ADD_DATA_TO_COURSE_LESSON,
         payload
     }
 }

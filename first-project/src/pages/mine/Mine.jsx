@@ -6,8 +6,9 @@ import Swiper from "swiper"
 import "swiper/css/swiper.min.css";
 import axios from 'axios';
 import classNames from 'classnames';
-import {connect} from 'react-redux'
-import {addDataToMinePageActionCreator} from '@/store/action'
+import { connect } from 'react-redux'
+import { addDataToMinePageActionCreator } from '@/store/action';
+import BScroll from 'better-scroll';
 
 class Mine extends Component {
     componentDidMount() {
@@ -17,20 +18,25 @@ class Mine extends Component {
                 delay: 2000,
             },
         })
+        this.bscroll = new BScroll('.bscroll-wrapper', {
+            scrollY: true,
+            click:true,
+            scrollX: false
+        })
         // console.log(this.props.items.size)
         if (this.props.items.size > 0) {
             return;
         }
         axios.get('/mine/mineItem.json')
-        .then(res => res.data.items)
-        .then(res => {
-            this.props.loadData(res)
-            // console.log('reload');
-        })
+            .then(res => res.data.items)
+            .then(res => {
+                this.props.loadMineItemData(res)
+                // console.log('reload');
+            })
     }
     render() {
         // console.log('Mine组件重新渲染了');
-        let {items} = this.props;
+        let { items } = this.props;
         items = items.map(i => {
             let id = i.getIn(['id']);
             let title = i.getIn(['title']);
@@ -40,11 +46,11 @@ class Mine extends Component {
             let icon = i.getIn(['icon']);
 
             const myClassName = classNames({
-                'mine-item-wrapper':true,
-                'hidden':isBalanceShow === 1?false:true,
+                'mine-item-wrapper': true,
+                'hidden': isBalanceShow === 1 ? false : true,
             })
-            return(
-                <MineItem 
+            return (
+                <MineItem
                     title={title}
                     linkTo={linkTo}
                     myClassName={myClassName}
@@ -61,46 +67,50 @@ class Mine extends Component {
                     <span>我的</span>
                     <span className="icon iconfont">&#xe665;</span>
                 </div>
-                <div className="mine-info-wrapper">
-                    <div className="avatar">
-                        <img src={avatar} alt="图片不见了" />
-                    </div>
-                    <div className="name-and-phone">
-                        <h3 className="name">
-                            Geek_14dce3
+                <div className="bscroll-wrapper" >
+                    <div className="content">
+                        <div className="mine-info-wrapper">
+                            <div className="avatar">
+                                <img src={avatar} alt="图片不见了" />
+                            </div>
+                            <div className="name-and-phone">
+                                <h3 className="name">
+                                    Geek_14dce3
                         </h3>
-                        <div className="phone-and-selfPage">
-                            <div className="phone">12345678910</div>
-                            <div className="selfPage">
-                                个人主页<span className="icon iconfont right">&#xe613;</span>
+                                <div className="phone-and-selfPage">
+                                    <div className="phone">12345678910</div>
+                                    <div className="selfPage">
+                                        个人主页<span className="icon iconfont right">&#xe613;</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="slider-container">
-                    <div className="swiper-wrapper">
-                        <div className="swiper-slide">
-                            <img src={avatar} alt="图片不见了" width="100%" height="100%" />
+                        <div className="slider-container">
+                            <div className="swiper-wrapper">
+                                <div className="swiper-slide">
+                                    <img src={avatar} alt="图片不见了" width="100%" height="100%" />
+                                </div>
+                            </div>
                         </div>
+                        {items.size && items}
                     </div>
                 </div>
-                {items.size && items}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => {
-    return{
-        items : state.getIn(['mineItemDateSource']),
+    return {
+        items: state.getIn(['mineItemDateSource']),
     }
 }
 const mapDispatchToProps = dispatch => {
-    return{
-        loadData:(data) => {
+    return {
+        loadMineItemData: (data) => {
             dispatch(addDataToMinePageActionCreator(data));
         }
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Mine);
+export default connect(mapStateToProps, mapDispatchToProps)(Mine);

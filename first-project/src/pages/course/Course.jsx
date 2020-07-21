@@ -7,7 +7,6 @@ import './course.styl';
 import Header from './header/Header';
 
 class Course extends Component {
-    state = {  }
     render() { 
         return ( 
             <div className="course">
@@ -20,5 +19,5 @@ class Course extends Component {
         );
     }
 }
- 
+
 export default Course;

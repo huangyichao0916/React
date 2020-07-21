@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux-immutable';
-import {createStore} from 'redux';
+import {createStore,applyMiddleware} from 'redux';
 import reducers from './reducers';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers(reducers);
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,applyMiddleware(thunk));
 
 export default store;

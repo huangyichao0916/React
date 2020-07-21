@@ -3,6 +3,8 @@ import accountImg from '../../assets/imgs/account.png'
 import './account.styl'
 import RechargeItem from './rechargeItem/RechargeItem'
 import classNames from 'classnames'
+import { connect } from 'react-redux'
+import { rechargeActionCreator } from '@/store/action'
 
 class Account extends Component {
     constructor() {
@@ -58,11 +60,25 @@ class Account extends Component {
                             })
                         }
                     </div>
-                    <button>确认充值</button>
+                    <button onClick={() => {this.props.handleRecharge(this.state.recharge[this.state.highlightKey])}}>确认充值</button>
                 </div>
             </div>
         );
     }
 }
 
-export default Account;
+const mapStateToProps = (state) => {
+    return {
+        balance: state.getIn(['account'])
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        handleRecharge: (payload) => {
+            dispatch(rechargeActionCreator(payload))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Account);

@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import './studyPathItem.styl';
 
 class StudyPathItem extends Component {
-    state = {  }
     render() { 
+        const {type , total} = this.props;
         return (
             <div className="studyPathItem">
                 <div className="description">
                     <div className="type">
-                        Java工程师
+                        {type}
                     </div>
                     <div className="totalLessons">
-                        共有19门课程
+                        共有{total}门课程
                     </div>
                 </div>
                 <div className="img">
