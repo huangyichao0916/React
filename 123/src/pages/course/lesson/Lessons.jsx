@@ -5,7 +5,6 @@ import axios from 'axios';
 import '@/mock/course-lesson-data';
 import { connect } from 'react-redux';
 import { addDataToCourseLessonActionCreator } from '@/store/action';
-import CourseDirection from './courseDirection/CourseDirection';
 
 class Lesson extends Component {
     componentDidMount() {
@@ -24,7 +23,6 @@ class Lesson extends Component {
         return (
             <div className="lesson">
                 <StudyPath courseLessonDataSource={courseLessonDataSource}/>
-                <CourseDirection />
             </div>
         );
     }
