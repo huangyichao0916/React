@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './studyPath.styl';
 import StudyPathItem from './studyPathItem/StudyPathItem';
-import BScroll from 'better-scroll';
+// import BScroll from 'better-scroll';
 
 class StudyPath extends Component {
     componentDidMount(){
-        this.bs = new BScroll('.studyPathItemWrapper',{
-            scrollX:true,
-        })
+        // this.bs = new BScroll('.studyPathItemWrapper',{
+        //     scrollX:true,
+        // })
     }
     render() {
         // console.log('studypatch重新渲染');
