@@ -21,7 +21,7 @@ class StudyPath extends Component {
             }
             return pre;
         }, {})
-        console.log(studyPathItemData);//object
+        // console.log(studyPathItemData);//object
         const finalStudyPathItem = Object.keys(studyPathItemData).map((i,index) => {
             return (
                 <StudyPathItem key={index} type={i} total={studyPathItemData[i]}/>

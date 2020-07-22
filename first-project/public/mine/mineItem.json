@@ -4,7 +4,7 @@
             "id":0,
             "title":"账户",
             "icon":"&#xe8d5;",
-            "isDotShow":1,
+            "isDotShow":0,
             "isBalanceShow":1,
             "linkTo":"/account"
         },
@@ -12,7 +12,7 @@
             "id":1,
             "title":"我的课程",
             "icon":"&#xe673;",
-            "isDotShow":1,
+            "isDotShow":0,
             "isBalanceShow":0,
             "linkTo":"/myCourse"
         },

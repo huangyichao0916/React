@@ -6,10 +6,18 @@ import '@/mock/course-lesson-data';
 import { connect } from 'react-redux';
 import { addDataToCourseLessonActionCreator } from '@/store/action';
 import CourseDirection from './courseDirection/CourseDirection';
+import AllCourses from './allCourses/AllCourses';
+import BScroll from 'better-scroll';
 
 class Lesson extends Component {
     componentDidMount() {
+        this.bscroll = new BScroll('.lesson', {
+            scrollY: true,
+            click:true,
+            scrollX: false
+        })
         if (this.props.courseLessonDataSource.size > 0) {
+            console.log('courseLessonDataSource已经有数据，所以阻断了axios请求');
             return;
         }
         console.log('请求courseLesson的数据');
@@ -20,11 +28,14 @@ class Lesson extends Component {
     render() {
         // console.log('lesson重新渲染');
         const {courseLessonDataSource} = this.props;
-        // console.log(courseLessonDataSource)
+        console.log(courseLessonDataSource)
         return (
             <div className="lesson">
-                <StudyPath courseLessonDataSource={courseLessonDataSource}/>
-                <CourseDirection />
+                <div className="content">
+                    <StudyPath courseLessonDataSource={courseLessonDataSource}/>
+                    <CourseDirection courseLessonDataSource={courseLessonDataSource}/>
+                    <AllCourses />
+                </div>
             </div>
         );
     }

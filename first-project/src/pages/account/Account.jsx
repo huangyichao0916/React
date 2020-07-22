@@ -18,7 +18,7 @@ class Account extends Component {
         window.history.back();
     }
     handleHighlight = (key) => {
-        console.log(this.state)
+        // console.log(this.state)
         this.setState({
             highlightKey: key
         })

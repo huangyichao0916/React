@@ -45,3 +45,13 @@ export const addDataToCourseLessonActionCreator = payload => {
         payload
     }
 }
+
+// practiceCamp购买课程相关的action create 权佳欣
+export const practiceCampBuyLessonActionCreator = payload => {
+    return (dispatch, getState) => {
+        dispatch(buyLessonActionCreator(payload));
+        dispatch(setIsDotedToTrueActionCreator(0));
+        dispatch(setIsDotedToTrueActionCreator(1));
+        dispatch(setIsDotedToTrueActionCreator(2));
+    }
+}
