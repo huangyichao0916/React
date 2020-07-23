@@ -3,6 +3,7 @@ import {BUY_LESSON,RECHARGE} from './action';
 import {ADD_DATA_TO_MINE_PAGE,SET_IS_DOTED_TO_TRUE,SET_IS_DOTED_TO_FALSE} from './action';
 import {ADD_DATA_TO_COURSE_LESSON} from './action';
 import {ADD_DATA_TO_PRACTICE_CAMP,SET_PRACTICE_CAMP_TO_BE_PURCHASED} from './action';
+import {ADD_PURCHASED_LESSONS_TO_STUDY_PAGE} from './action';
 
 let defaultBalanceState = 10000;
 const balanceReducer = (state = defaultBalanceState,action) => {
@@ -57,12 +58,23 @@ const practiceCampItemReducer = (state = defaultPracticeCampItemState,action) =>
     }
 }
 
+const defaultStudyItemState = fromJS([]);
+const studyItemReducer = (state = defaultStudyItemState, action) => {
+    const {type, payload} = action;
+    switch (type) {
+        case ADD_PURCHASED_LESSONS_TO_STUDY_PAGE:
+            return state.push(fromJS(payload))
+        default:
+            return state;
+    }
+}
 
 const reducers = {
     account:balanceReducer,//账户余额 Number
     mineItemDateSource:mineItemReducer,//我的 页面的每一项的数据 Array
     courseLessonDataSource:courseLessonItemReducer,//讲堂的课程页面下面的数据源 Array
     practiceCampDataSource:practiceCampItemReducer,//讲堂的训练营下面的数据源  Array
+    studyItemDatatSource:studyItemReducer, // 我的学习下面的数据源
 }
 
 export default reducers;

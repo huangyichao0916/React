@@ -1,8 +1,17 @@
-import React, { } from 'react';
+import React from 'react';
 import './study.styl'
 import { Header } from './studyHeader.style'
+import { connect } from 'react-redux'
+import StudyItem from './studyItem/StudyItem'
+import {Link} from 'react-router-dom';
 
-function Study() {
+const Study = props => {
+    const studyItemList = props.studyItems.map((item, i) => {
+        return (
+            <StudyItem {...item} key={i}/>
+        )
+    })
+    const len = studyItemList.length > 0 ? true : false;
     return (
         <div className="study">
             <Header>
@@ -30,12 +39,29 @@ function Study() {
                     <div>下载</div>
                 </div>
             </div>
+
             <div className="study-content-wrapper">
-                <div className="no-study-record">暂无学习内容</div>
-                <button className="subscribe-button">订阅</button>
+                {!len &&
+                    <div> <div className="no-study-record">暂无学习内容</div>
+                        <Link to="/course">
+                            <button className="subscribe-button">订阅</button>
+                        </Link>
+                    </div>
+                }
+                {
+                    len && studyItemList
+                }
             </div>
+
         </div>
     );
 }
 
-export default Study;
+const mapStateToProps = state => {
+    return {
+        studyItems: state.getIn(['studyItemDatatSource']).toJS().reverse(),
+    }
+}
+
+
+export default connect(mapStateToProps)(Study);

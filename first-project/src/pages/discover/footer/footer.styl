@@ -14,10 +14,25 @@
         align-items center
         justify-content: center
         a
+            position relative
             text-decoration: none
+            text-align center
+            .footer-red-dot
+                position absolute
+                right -0.08rem
+                top -0.08rem
+                border-radius 100%
+                background-color red
+                width .2rem
+                height .2rem
+            .icon
+                font-size .6rem
+                color #888888
             .footerItemContent
                 color grey
         a.highlight
             text-decoration: none
-            .footerItemContent
-                // color: #fa8919
+            background-color white
+            .footerItemContent,.icon
+                color: #fa8919
+        

@@ -54,6 +54,17 @@ export const addDataToCourseLessonActionCreator = payload => {
 
 
 /**
+ * studyItem相关的actioncreator 权佳欣
+ */
+export const ADD_PURCHASED_LESSONS_TO_STUDY_PAGE = 'ADD_PURCHASED_LESSONS_TO_STUDY_PAGE';
+export const addPurchasedLessonsToStudyPageActionCreator = payload => {
+    return {
+        type: ADD_PURCHASED_LESSONS_TO_STUDY_PAGE,
+        payload
+    }
+}
+
+/**
  * 讲堂 -》 训练营相关的action 以及action creator
  */
 // practiceCampItem相关的action creator
@@ -72,12 +83,13 @@ export const setPracticeCampToBePurchasedActionCreator = payload => {//现在的
     }
 }
 // practiceCamp购买课程相关的action creator 权佳欣
-export const practiceCampBuyLessonActionCreator = (payload,id) => {
+export const practiceCampBuyLessonActionCreator = (payload,id,lesson) => {
     return (dispatch, getState) => {
         dispatch(buyLessonActionCreator(payload));
         dispatch(setIsDotedToTrueActionCreator(0));
         dispatch(setIsDotedToTrueActionCreator(1));
         dispatch(setIsDotedToTrueActionCreator(2));
-        dispatch(setPracticeCampToBePurchasedActionCreator(id))
+        dispatch(setPracticeCampToBePurchasedActionCreator(id));
+        dispatch(addPurchasedLessonsToStudyPageActionCreator(lesson))
     }
 }

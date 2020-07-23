@@ -20,7 +20,11 @@ const PracticeCampItem = props => {
                     <div className="practiceCamp-item-price">￥{price}</div>
                     <div className="practiceCamp-item-oldprice">￥{oldprice}</div>
                     {!isPurchased && <button onClick={() => {
-                        onHandleJoinCamp(price,id);
+                        onHandleJoinCamp(price,id,{
+                            lessonName,
+                            teacherName,
+                            teacherDesc,
+                        });
                     }}>立即报名</button>}
                     {isPurchased && <button className="hasBeenPurchased">已报名</button>}
                 </div>
@@ -37,9 +41,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onHandleJoinCamp: (payload,id) => {
+        onHandleJoinCamp: (payload,id,lesson) => {
             // console.log(payload,id)
-            dispatch(practiceCampBuyLessonActionCreator(payload,id))
+            dispatch(practiceCampBuyLessonActionCreator(payload,id,lesson))
         }
     }
 }
