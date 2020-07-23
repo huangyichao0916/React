@@ -2,8 +2,9 @@ import {fromJS} from 'immutable';
 import {BUY_LESSON,RECHARGE} from './action';
 import {ADD_DATA_TO_MINE_PAGE,SET_IS_DOTED_TO_TRUE,SET_IS_DOTED_TO_FALSE} from './action';
 import {ADD_DATA_TO_COURSE_LESSON} from './action';
+import {ADD_DATA_TO_PRACTICE_CAMP,SET_PRACTICE_CAMP_TO_BE_PURCHASED} from './action';
 
-let defaultBalanceState = 0;
+let defaultBalanceState = 10000;
 const balanceReducer = (state = defaultBalanceState,action) => {
     const {type,payload} = action;
     switch (type) {
@@ -16,7 +17,7 @@ const balanceReducer = (state = defaultBalanceState,action) => {
     }
 }
 
-let defaultMineItemState = fromJS([]);
+const defaultMineItemState = fromJS([]);
 const mineItemReducer = (state = defaultMineItemState,action) => {
     const {type,payload} = action;
     switch (type) {
@@ -31,7 +32,7 @@ const mineItemReducer = (state = defaultMineItemState,action) => {
     }
 }
 
-let defaultcourseLessonItemState = fromJS([]);
+const defaultcourseLessonItemState = fromJS([]);
 const courseLessonItemReducer = (state = defaultcourseLessonItemState , action) => {
     const {type,payload} = action;
     switch (type) {
@@ -43,11 +44,25 @@ const courseLessonItemReducer = (state = defaultcourseLessonItemState , action) 
     }
 }
 
+const defaultPracticeCampItemState = fromJS([]);
+const practiceCampItemReducer = (state = defaultPracticeCampItemState,action) => {
+    const {type , payload} = action;
+    switch (type) {
+        case ADD_DATA_TO_PRACTICE_CAMP:
+            return fromJS(payload);
+        case SET_PRACTICE_CAMP_TO_BE_PURCHASED:
+            return state.setIn([payload,'isPurchased'],true)
+        default:
+            return state;
+    }
+}
+
 
 const reducers = {
     account:balanceReducer,//账户余额 Number
     mineItemDateSource:mineItemReducer,//我的 页面的每一项的数据 Array
     courseLessonDataSource:courseLessonItemReducer,//讲堂的课程页面下面的数据源 Array
+    practiceCampDataSource:practiceCampItemReducer,//讲堂的训练营下面的数据源  Array
 }
 
 export default reducers;

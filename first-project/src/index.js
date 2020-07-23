@@ -6,6 +6,13 @@ import './index.styl';
 import {Provider} from 'react-redux';
 import store from '@/store/store';
 
+import axios from 'axios';
+import { addDataToMinePageActionCreator } from '@/store/action';
+
+axios.get('/mine/mineItem.json')
+  .then(res => res.data.items)
+  .then(res => store.dispatch(addDataToMinePageActionCreator(res)))
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

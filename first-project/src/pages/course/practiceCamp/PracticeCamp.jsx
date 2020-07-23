@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PracticeCampItem from './practiceCampItem/PracticeCampItem'
 import './practiceCamp.styl'
 import axios from 'axios';
 import '@/mock/course-practiceCamp-data';
-
+import {connect} from 'react-redux';
+import {addDataToPracticeCampActionCreator} from '@/store/action';
 import BScroll from 'better-scroll';
 
-function PracticeCamp() {
-    const [pcdata, setPcdata] = useState([]);
+const PracticeCamp = props => {
+    let {practiceCampDataSource,loadPracticeCampData} = props;
+    // console.log(practiceCampDataSource);
+    // const [practiceCampData, setPracticeCampData] = useState([]);
     useEffect(() => {
+        if (practiceCampDataSource.length > 0) {
+            console.log('因为practiceCampDataSource中有数据，所以阻断了axios请求');
+            return;
+        }
         axios.get('mock/course/practiceCamp')
             .then(res => res.data.practiceCamps)
-            .then(res => setPcdata(res))
+            .then(res => loadPracticeCampData(res))
     }, [])
-    console.log(Array.isArray(pcdata));
-    console.log(pcdata)
 
     useEffect(() => {
         const bscroll = new BScroll('.practiceCamp-wrapper',{
@@ -24,12 +29,13 @@ function PracticeCamp() {
         })
     }, [])
 
-    let items = pcdata.map((item, i) => {
-        const { img, title, name, desc, month, day, price, oldprice } = item;
+    let items = practiceCampDataSource.map((item, i) => {
+        const { img, title, name, desc, month, day, price, oldprice, isPurchased} = item;
         return (
             <PracticeCampItem
                 img={img}
                 key={i}
+                id={i}
                 lessonName={title}
                 teacherName={name}
                 teacherDesc={desc}
@@ -37,6 +43,7 @@ function PracticeCamp() {
                 day={day}
                 price={price}
                 oldprice={oldprice}
+                isPurchased={isPurchased}
             />
         )
     })
@@ -58,4 +65,17 @@ function PracticeCamp() {
     );
 }
 
-export default PracticeCamp;
+const mapStateToProps = state => {
+    return {
+        practiceCampDataSource:state.getIn(['practiceCampDataSource']).toJS(),
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return{
+        loadPracticeCampData:(payload) => {
+            dispatch(addDataToPracticeCampActionCreator(payload));
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(PracticeCamp);
