@@ -4,7 +4,7 @@ import AllCoursesItem from '@/components/course/lesson/allCoursesItem/AllCourses
 
 const AllCourses = props => {
     const {courseLessonDataSource} = props;
-    console.log(courseLessonDataSource);
+    // console.log(courseLessonDataSource);
     const items = courseLessonDataSource.map((item,index) => {
         const {img,title,desc,month,day,price,oldprice,isPurchased,name} = item;
         return(

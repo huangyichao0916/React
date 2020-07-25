@@ -1,11 +1,32 @@
-import React,{useState,useEffect,useMemo,useRef,useImperativeHandle} from 'react';
+import React,{forwardRef,useState,useEffect,useMemo,useRef,useImperativeHandle} from 'react';
+import styled from 'styled-components';
+import BScroll from "better-scroll"
+
+const ScrollContainer = styled.div`
+    width:100%;
+    height:100vh;
+    /* padding: 0 0.44rem; */
+`
+
+const debounce = (func, delay) => {
+    let timer;
+    return function (...args) {
+      if(timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        func.apply(this, args);
+        clearTimeout(timer);
+      }, delay);
+    };
+};
 
 const Scroll = forwardRef((props, ref) => {
     const [bScroll, setBScroll] = useState();
 
     const scrollContaninerRef = useRef();
 
-    const { direction, click, refresh, bounceTop, bounceBottom } = props;
+    const { direction, refresh, bounceTop, bounceBottom } = props;
 
     const { pullUp, pullDown, onScroll } = props;
 
@@ -17,12 +38,13 @@ const Scroll = forwardRef((props, ref) => {
         return debounce(pullDown, 500)
     }, [pullDown]);
 
+    //生成BScroll的useEffect
     useEffect(() => {
         const scroll = new BScroll(scrollContaninerRef.current, {
             scrollX: direction === "horizental",
             scrollY: direction === "vertical",
             probeType: 3,
-            click: click,
+            click: true,
             bounce: {
                 top: bounceTop,
                 bottom: bounceBottom

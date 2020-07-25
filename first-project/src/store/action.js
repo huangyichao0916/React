@@ -1,3 +1,6 @@
+import axios from 'axios';
+import '@/mock/course-lesson-data';
+
 /**
  * account相关的action creator
  */
@@ -108,5 +111,12 @@ export const lessonBuyLessonActionCreator = (price,id,lesson) => {
         dispatch(setIsDotedToTrueActionCreator(2));
         dispatch(addPurchasedLessonsToStudyPageActionCreator(lesson));
         dispatch(setLessonToBePurchasedActionCreator(id));
+    }
+}
+export const courseLessonPullDownActionCreator = () => {
+    return (dispatch,getState) => {
+        axios.get('/mock/course/lesson')
+            .then(res => res.data.courses)
+            .then(res => dispatch(addDataToCourseLessonActionCreator(res)));
     }
 }
