@@ -3,7 +3,20 @@ import './practiceCampItem.styl'
 import { connect } from 'react-redux'
 import { practiceCampBuyLessonActionCreator } from '@/store/action'
 const PracticeCampItem = props => {
-    const {img,lessonName,teacherName,teacherDesc,month,day,price,oldprice,onHandleJoinCamp,isPurchased,id} = props;
+    const {
+        img,
+        lessonName,
+        teacherName,
+        teacherDesc,
+        month,
+        day,
+        price,
+        oldprice,
+        onHandleJoinCamp,
+        isPurchased,
+        id,
+    } = props;
+
     return (
         <div className="practiceCamp-item">
             <div className="practiceCamp-item-img">

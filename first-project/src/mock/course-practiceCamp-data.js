@@ -12,6 +12,7 @@ const data = Mock.mock('mock/course/practiceCamp',{
         'price|1000-2000':1888,
         'oldprice|2000-3000':2888,
         'isPurchased':false,
+        'itemType':'practiceCamp',
     }]
 })
 

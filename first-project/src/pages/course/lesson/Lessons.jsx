@@ -23,18 +23,17 @@ class Lesson extends Component {
         console.log('请求courseLesson的数据');
         axios.get('/mock/course/lesson')
         .then(res => res.data.courses)
-        .then(res => this.props.loadCourseLessonData(res));
+        .then(res => this.props.addDataToCourseLesson(res));
     }
     render() {
         // console.log('lesson重新渲染');
         const {courseLessonDataSource} = this.props;
-        console.log(courseLessonDataSource)
         return (
             <div className="lesson">
                 <div className="content">
                     <StudyPath courseLessonDataSource={courseLessonDataSource}/>
-                    <CourseDirection courseLessonDataSource={courseLessonDataSource}/>
-                    <AllCourses />
+                    <CourseDirection />
+                    <AllCourses courseLessonDataSource={courseLessonDataSource.toJS()}/>
                 </div>
             </div>
         );
@@ -48,7 +47,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        loadCourseLessonData: (payload) => {
+        addDataToCourseLesson: (payload) => {
             dispatch(addDataToCourseLessonActionCreator(payload));
         }
     }

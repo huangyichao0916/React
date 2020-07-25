@@ -41,17 +41,6 @@ export const setIsDotedToFalseActionCreator = payload => {//现在的payload是m
     }
 }
 
-/**
- * courseLessonItem相关的action creator
- */
-export const ADD_DATA_TO_COURSE_LESSON = 'ADD_DATA_TO_COURSE_LESSON';
-export const addDataToCourseLessonActionCreator = payload => {
-    return {
-        type:ADD_DATA_TO_COURSE_LESSON,
-        payload
-    }
-}
-
 
 /**
  * studyItem相关的actioncreator 权佳欣
@@ -83,13 +72,41 @@ export const setPracticeCampToBePurchasedActionCreator = payload => {//现在的
     }
 }
 // practiceCamp购买课程相关的action creator 权佳欣
-export const practiceCampBuyLessonActionCreator = (payload,id,lesson) => {
+export const practiceCampBuyLessonActionCreator = (price,id,lesson) => {
     return (dispatch, getState) => {
-        dispatch(buyLessonActionCreator(payload));
+        dispatch(buyLessonActionCreator(price));
         dispatch(setIsDotedToTrueActionCreator(0));
         dispatch(setIsDotedToTrueActionCreator(1));
         dispatch(setIsDotedToTrueActionCreator(2));
         dispatch(setPracticeCampToBePurchasedActionCreator(id));
         dispatch(addPurchasedLessonsToStudyPageActionCreator(lesson))
+    }
+}
+
+/**
+ * courseLessonItem相关的action creator
+ */
+export const ADD_DATA_TO_COURSE_LESSON = 'ADD_DATA_TO_COURSE_LESSON';
+export const addDataToCourseLessonActionCreator = payload => {//现在的payload是数据
+    return {
+        type:ADD_DATA_TO_COURSE_LESSON,
+        payload
+    }
+}
+export const SET_LESSON_TO_BE_PURCHASED = 'SET_LESSON_TO_BE_PURCHASED';
+export const setLessonToBePurchasedActionCreator = payload => {//现在的payload是id
+    return{
+        type:SET_LESSON_TO_BE_PURCHASED,
+        payload
+    }
+}
+export const lessonBuyLessonActionCreator = (price,id,lesson) => {
+    return (dispatch,getState) => {
+        dispatch(buyLessonActionCreator(price));
+        dispatch(setIsDotedToTrueActionCreator(0));
+        dispatch(setIsDotedToTrueActionCreator(1));
+        dispatch(setIsDotedToTrueActionCreator(2));
+        dispatch(addPurchasedLessonsToStudyPageActionCreator(lesson));
+        dispatch(setLessonToBePurchasedActionCreator(id));
     }
 }

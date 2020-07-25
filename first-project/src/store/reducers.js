@@ -1,7 +1,7 @@
 import {fromJS} from 'immutable';
 import {BUY_LESSON,RECHARGE} from './action';
 import {ADD_DATA_TO_MINE_PAGE,SET_IS_DOTED_TO_TRUE,SET_IS_DOTED_TO_FALSE} from './action';
-import {ADD_DATA_TO_COURSE_LESSON} from './action';
+import {ADD_DATA_TO_COURSE_LESSON,SET_LESSON_TO_BE_PURCHASED} from './action';
 import {ADD_DATA_TO_PRACTICE_CAMP,SET_PRACTICE_CAMP_TO_BE_PURCHASED} from './action';
 import {ADD_PURCHASED_LESSONS_TO_STUDY_PAGE} from './action';
 
@@ -38,8 +38,9 @@ const courseLessonItemReducer = (state = defaultcourseLessonItemState , action) 
     const {type,payload} = action;
     switch (type) {
         case ADD_DATA_TO_COURSE_LESSON:
-            return fromJS(payload);
-    
+            return state.push(...fromJS(payload));
+        case SET_LESSON_TO_BE_PURCHASED:
+            return state.setIn([payload,'isPurchased'],true);
         default:
             return state;
     }
@@ -63,7 +64,9 @@ const studyItemReducer = (state = defaultStudyItemState, action) => {
     const {type, payload} = action;
     switch (type) {
         case ADD_PURCHASED_LESSONS_TO_STUDY_PAGE:
-            return state.push(fromJS(payload))
+            return state.push(fromJS(payload));
+
+        
         default:
             return state;
     }
