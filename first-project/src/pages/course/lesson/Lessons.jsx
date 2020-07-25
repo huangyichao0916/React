@@ -9,6 +9,7 @@ import CourseDirection from './courseDirection/CourseDirection';
 import AllCourses from './allCourses/AllCourses';
 // import BScroll from 'better-scroll';
 import Scroll from '@/components/Scroll/Scroll';
+import {forceCheck} from 'react-lazyload';
 
 class Lesson extends Component {
     componentDidMount() {
@@ -33,7 +34,8 @@ class Lesson extends Component {
                 <div className="lesson">
                     <Scroll 
                     direction={'vertical'} 
-                    pullDown={handlePullDown}
+                    pullUp={handlePullDown}
+                    onScroll={forceCheck}
                     >
                         <div className="content">
                             <StudyPath courseLessonDataSource={courseLessonDataSource}/>

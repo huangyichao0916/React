@@ -2,6 +2,7 @@ import React from 'react';
 import './allCoursesItem.styl';
 import {connect} from 'react-redux';
 import {lessonBuyLessonActionCreator} from '@/store/action';
+import LazyLoad from 'react-lazyload';
 
 const AllCoursesItem = props => {
     const {
@@ -21,7 +22,9 @@ const AllCoursesItem = props => {
     return (
         <div className="practiceCamp-item">
             <div className="practiceCamp-item-img">
-                <img src={img} alt="图片不见了" />
+                <LazyLoad>
+                    <img src={img} alt="图片不见了" />
+                </LazyLoad>
             </div>
             <div className="practiceCamp-item-detail">
                 <div className="practiceCamp-item-name">{lessonName}</div>
