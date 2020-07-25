@@ -8,6 +8,7 @@ import Study from './pages/study/Study';
 import './assets/font/iconfont.css'
 import Footer from './pages/discover/footer/Footer';
 import Account from '@/pages/account/Account';
+import RechargeRecord from '@/pages/rechargeRecord/RechargeRecord';
 
 const MainPage = () => {
   return (
@@ -24,6 +25,7 @@ const MainPage = () => {
       <Route path="/mine"   component={Footer}/> 
 
       <Route path="/account" component={Account} />
+      <Route path="/rechargeRecord" component={RechargeRecord}/>
     </div>
   )
 }

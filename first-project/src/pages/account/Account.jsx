@@ -4,7 +4,8 @@ import './account.styl'
 import RechargeItem from './rechargeItem/RechargeItem'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
-import { rechargeActionCreator } from '@/store/action'
+import {Link} from 'react-router-dom';
+import {rechargeAndRecordActionCreator} from '@/store/action';
 
 class Account extends Component {
     constructor() {
@@ -35,7 +36,9 @@ class Account extends Component {
                     </div>
                     <div className="account-balance-wrapper">
                         <div className="account-balance">￥{this.props.balance.toFixed(2)}</div>
-                        <div className="view-detail">查看明细</div>
+                        <Link to="/rechargeRecord">
+                            <div className="view-detail">查看明细</div>
+                        </Link>
                     </div>
                     <div className="account-img">
                         <img src={accountImg} alt="图片不见了" />
@@ -67,16 +70,16 @@ class Account extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         balance: state.getIn(['account'])
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         handleRecharge: (payload) => {
-            dispatch(rechargeActionCreator(payload))
+            dispatch(rechargeAndRecordActionCreator(payload))
         }
     }
 }
