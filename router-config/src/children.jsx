@@ -7,7 +7,7 @@ class Children extends Component {
         return (
             <div>
                 Children
-                {renderRoutes(this.props.routes)}
+                {/* {renderRoutes(this.props.route)} */}
             </div>
         );
     }

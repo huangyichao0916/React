@@ -1,6 +1,7 @@
 import App from './App';
 import Children from './children';
 import GrandChildren from './grandChildren';
+import GrandChildren222 from './grandChildren222';
 
 const routes = [
     {
@@ -16,7 +17,11 @@ const routes = [
             {
                 path:'/children/grandchildren',
                 component:GrandChildren,
-            }
+            },
+            {
+                path:'/children/grandchildren222',
+                component:GrandChildren222,
+            },
         ]
     }
 ]

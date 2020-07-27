@@ -3,12 +3,12 @@ import './geekUniversityItem.styl'
 
 
 function GeekUniversityItem(props) {
-    const { title, lessonDesc, teacher, teacherDesc, phase, month, day } = props;
+    const { title, lessonDesc, teacher, teacherDesc, phase, month, day, img } = props;
     
     return (
         <div className="geek-university-item">
             <div className="geek-university-item-img">
-                <img src="" alt="" />
+                <img src={img} alt="" />
             </div>
             <div className="geek-university-item-title">{title}</div>
             <div className="geek-university-item-desc">{lessonDesc}</div>
