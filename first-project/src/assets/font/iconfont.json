@@ -6,6 +6,48 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "6321624",
+      "name": "换一换",
+      "font_class": "huanyihuan",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "10033192",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "11944888",
+      "name": "下  拉",
+      "font_class": "xiala",
+      "unicode": "e704",
+      "unicode_decimal": 59140
+    },
+    {
+      "icon_id": "4818418",
+      "name": "上下箭头",
+      "font_class": "shangxiajiantou",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "2441112",
+      "name": "摇一摇",
+      "font_class": "yaoyiyao",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "13692335",
+      "name": "search",
+      "font_class": "search1",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
       "icon_id": "3580737",
       "name": "订单",
       "font_class": "icon-",
