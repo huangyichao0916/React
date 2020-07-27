@@ -1,15 +1,9 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { renderRoutes } from "react-router-config";
 import { Top, Tab, TabItem } from './HomeLayout.style.js';
 import { NavLink } from 'react-router-dom';
 
 function Home(props) {
-  useEffect(() => {
-    console.log('1')
-  },[])
-  useEffect(() => {
-    console.log('2')
-  },[])
   const { route } = props;
   return (
     <>
