@@ -94,6 +94,20 @@ function Discover() {
                        {items}
                     </div>
                 </div>
+                <div className="geek-university">
+                    <div className="geek-university-header">
+                        <span></span>
+                        <div className="geek-university-title">每日一课</div>
+                        <div className="view-more">查看更多</div>
+                    </div>
+                    <div className="geek-university-wrapper">
+                       {items}
+                    </div>
+                    <div className="change-for-other">
+                        <span class="icon iconfont">&#xe638; 换一换</span>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     );

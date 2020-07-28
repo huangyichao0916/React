@@ -3,15 +3,14 @@ import Course from '@/pages/course/Course';
 import Discover from '@/pages/discover/Discover';
 import Mine from '@/pages/mine/Mine';
 import Study from '@/pages/study/Study';
-// import Footer from '@/pages/discover/footer/Footer';
 import {Redirect} from 'react-router-dom';
 import App from '@/App';
 import Account from '@/pages/account/Account';
 import Home from '@/pages/home/Home';
-
 import Lesson from '@/pages/course/lesson/Lessons';
 import LessonEveryday from '@/pages/course/lessonEveryday/LessonEveryday';
 import PracticeCamp from '@/pages/course/practiceCamp/PracticeCamp';
+import RechargeRecord from '@/pages/rechargeRecord/RechargeRecord';
 
 const routes = [
     {
@@ -76,6 +75,10 @@ const routes = [
                 path: '/account',
                 // exact: true,
                 component: Account,
+            },
+            {
+                path: '/rechargeRecord',
+                component: RechargeRecord,
             }
             
         ]
