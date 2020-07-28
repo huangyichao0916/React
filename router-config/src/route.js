@@ -11,7 +11,7 @@ const routes = [
     },
     {
         path:'/children',
-        exact:true,
+        // exact:true,
         component:Children,
         routes:[
             {

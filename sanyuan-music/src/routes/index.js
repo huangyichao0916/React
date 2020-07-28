@@ -20,32 +20,34 @@ const SuspenseComponent = Component => props => {
   )
 }
 
-export default [{
-  component: BlankLayout,
-  routes: [
-    {
-      path: "/",
-      component: HomeLayout,
-      routes: [
-        {
-          path: '/',
-          exact: true,
-          render: () => <Redirect to={"/recommend"} />
-        },
-        {
-          path: '/recommend',
-          component: SuspenseComponent(RecommendComponent)
-        },
-        {
-          path: '/singers',
-          component: SuspenseComponent(SingersComponent),
-          key: "singers"
-        },
-        // {
-        //   path: '/rank',
-        //   component: RankComponent
-        // },
-      ]
-    }
-  ]
-}]
+export default [
+  {
+    component: BlankLayout,
+    routes: [
+      {
+        path: "/",
+        component: HomeLayout,
+        routes: [
+          {
+            path: '/',
+            exact: true,
+            render: () => <Redirect to={"/recommend"} />
+          },
+          {
+            path: '/recommend',
+            component: SuspenseComponent(RecommendComponent)
+          },
+          {
+            path: '/singers',
+            component: SuspenseComponent(SingersComponent),
+            key: "singers"
+          },
+          // {
+          //   path: '/rank',
+          //   component: RankComponent
+          // },
+        ]
+      }
+    ]
+  }
+]

@@ -9,6 +9,10 @@ import store from '@/store/store';
 import axios from 'axios';
 import { addDataToMinePageActionCreator } from '@/store/action';
 
+import {BrowserRouter} from 'react-router-dom';
+import {renderRoutes} from 'react-router-config';
+import routes from '@/routes';
+
 axios.get('/mine/mineItem.json')
   .then(res => res.data.items)
   .then(res => store.dispatch(addDataToMinePageActionCreator(res)))
@@ -16,7 +20,9 @@ axios.get('/mine/mineItem.json')
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        {renderRoutes(routes)}
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
