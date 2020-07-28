@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PracticeCampItem from './practiceCampItem/PracticeCampItem'
 import './practiceCamp.styl'
 import axios from 'axios';
@@ -9,8 +9,6 @@ import BScroll from 'better-scroll';
 
 const PracticeCamp = props => {
     let {practiceCampDataSource,loadPracticeCampData} = props;
-    // console.log(practiceCampDataSource);
-    // const [practiceCampData, setPracticeCampData] = useState([]);
     useEffect(() => {
         if (practiceCampDataSource.length > 0) {
             console.log('因为practiceCampDataSource中有数据，所以阻断了axios请求');
@@ -20,13 +18,14 @@ const PracticeCamp = props => {
             .then(res => res.data.practiceCamps)
             .then(res => loadPracticeCampData(res))
     }, [])
-
+    const [scroll,setScroll] = useState(null);
     useEffect(() => {
         const bscroll = new BScroll('.practiceCamp-wrapper',{
             scrollX:false,
             click:true,
             scrollY:true,
         })
+        setScroll(bscroll);
     }, [])
 
     let items = practiceCampDataSource.map((item, i) => {

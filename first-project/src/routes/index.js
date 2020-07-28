@@ -26,7 +26,7 @@ const routes = [
             },
             {
                 path: '/home',
-                exact: true,
+                // exact: true,
                 component: Home,
                 routes: [
                     {
@@ -53,11 +53,11 @@ const routes = [
                                 component: Lesson,
                             },
                             {
-                                path: 'home/course/practiceCamp',
+                                path: '/home/course/practiceCamp',
                                 component: PracticeCamp,
                             },
                             {
-                                path: 'home/course/lessonEveryday',
+                                path: '/home/course/lessonEveryday',
                                 component: LessonEveryday,
                             },
                         ]
