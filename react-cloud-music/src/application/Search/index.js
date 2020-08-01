@@ -15,6 +15,7 @@ import { getSongDetail } from './../Player/store/actionCreators';
 
 
 const Search = (props) => {
+  // console.log(props)
   const [query, setQuery] = useState('');
   const [show, setShow] = useState(false);
   const musicNoteRef = useRef();

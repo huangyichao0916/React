@@ -6,9 +6,10 @@ import Player from "../application/Player/index";
 
 function Home(props) {
   const { route } = props;
+  // console.log(props)
 
   return (
-    <div>
+    <div className="hychychyc">
       <Top>
         <span
           className="iconfont menu"

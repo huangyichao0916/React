@@ -2,23 +2,65 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+const chapterTree = {
+  name: '总章节',
+  children: 
+  [
+      {
+          name: '章节一', 
+          children:
+              [
+                  {
+                      name: '第一节', children:
+                          [
+                              {
+                                  name: '第一小节'
+                              },
+                              {
+                                  name: '第二小节'
+                              }
+                          ]
+                  },
+                  {
+                      name: '第二节'
+                  }
+              ]
+      },
+      {
+          name: '章节二',
+          children:
+              [
+                  {
+                      name: '第三节'
+                  },
+                  {
+                      name: '第四节'
+                  }
+              ]
+      }
+  ]
+};
+
+const helper = node => {
+  return(
+    <ul>
+      <li >{node.name}</li>
+      {
+        node.children &&
+        node.children.map(child => {
+          return helper(child);
+        }) 
+      }
+    </ul>
+  )
+}
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        helper(chapterTree)
+      }
     </div>
   );
 }

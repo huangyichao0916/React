@@ -36,17 +36,19 @@ const SearchBoxWrapper = styled.div`
   }
 `
 
-const SearchBox = (props) => {
+const SearchBox = props => {
   const queryRef = useRef();
   const [query, setQuery] = useState('');
 
   const { newQuery } = props;
   const { handleQuery } = props;
 
+  //输入防抖
   let handleQueryDebounce = useMemo(() => {
     return debounce(handleQuery, 500);
   }, [handleQuery]);
 
+  //组件一挂载就让搜索框聚焦
   useEffect(() => {
     queryRef.current.focus();
   }, []);

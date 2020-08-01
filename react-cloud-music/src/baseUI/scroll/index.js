@@ -48,6 +48,7 @@ const Scroll = forwardRef((props, ref) => {
     return debounce(pullDown, 500)
   }, [pullDown]);
 
+  //创建better scroll 的useEffect
   useEffect(() => {
     const scroll = new BScroll(scrollContaninerRef.current, {
       scrollX: direction === "horizental",
@@ -55,8 +56,8 @@ const Scroll = forwardRef((props, ref) => {
       probeType: 3,
       click: click,
       bounce:{
-        top: bounceTop,
-        bottom: bounceBottom
+        top: bounceTop,//boolean
+        bottom: bounceBottom//boolean
       }
     });
     setBScroll(scroll);
@@ -66,6 +67,7 @@ const Scroll = forwardRef((props, ref) => {
     // eslint-disable-next-line
   }, []);
 
+  //判断有无better scroll实例和滚动事件函数，有的话就监听滚动事件，并在componentWillUnmount的时候取消监听滚动事件
   useEffect(() => {
     if(!bScroll || !onScroll) return;
     bScroll.on('scroll', onScroll)
@@ -74,6 +76,7 @@ const Scroll = forwardRef((props, ref) => {
     }
   }, [onScroll, bScroll]);
 
+  //判断有无better scroll实例和pullUp函数，有的话就监听
   useEffect(() => {
     if(!bScroll || !pullUp) return;
     const handlePullUp = () => {
