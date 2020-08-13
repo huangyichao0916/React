@@ -9,7 +9,7 @@ const Demo = props => {
     useEffect(() => {
         console.log('mount');
         return () => console.log('unmount')
-    })
+    },[])
 
     return(
         <div>
