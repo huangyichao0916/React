@@ -1,14 +1,13 @@
-import {StoreState} from '../types';
+import {reducerState} from '../types';
 import {EnthusiasmAction} from '../actions';
 import {INCREMENT_ENTHUSIASM,DECREMENT_ENTHUSIASM} from '../constants';
-import {Reducer,combineReducers} from 'redux';
+import {Reducer,combineReducers,ReducersMapObject} from 'redux';
 
-
-let defaultState:StoreState = {
+let defaultState:reducerState = {
     languageName: 'ch',
     enthusiasmLevel: 1,
 }
-const reducer:Reducer = (state: StoreState = defaultState,action: EnthusiasmAction):StoreState => {
+const reducer:Reducer = (state: reducerState = defaultState,action: EnthusiasmAction):reducerState => {
     switch (action.type) {
         case INCREMENT_ENTHUSIASM:
             return {
@@ -25,4 +24,8 @@ const reducer:Reducer = (state: StoreState = defaultState,action: EnthusiasmActi
     }
 }
 
-export default reducer;
+let reducers:ReducersMapObject = {
+    reducer
+}
+let rootReducer:Reducer = combineReducers(reducers)
+export default rootReducer;

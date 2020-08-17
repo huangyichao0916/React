@@ -30,19 +30,19 @@ const Hello = ({name, enthusiasmLevel = 1,onIncrement,onDecrement}:Props) => {
 }
 
 const mapStateToProps = (state:StoreState) => {
-    const {enthusiasmLevel,languageName} = state;
+    const {enthusiasmLevel,languageName} = state.reducer;
     return{
-        enthusiasmLevel,
+        enthusiasmLevel: enthusiasmLevel,
         name: languageName,
     }
 }
 const mapDispatchToProps = (dispatch:Dispatch<EnthusiasmAction>) => {
     return {
         onIncrement:() => {
-            dispatch(decrementEnthusiasmActionCreator())
+            dispatch(incrementEnthusiasmActionCreator())
         },
         onDecrement:() => {
-            dispatch(incrementEnthusiasmActionCreator())
+            dispatch(decrementEnthusiasmActionCreator())
         }
     }
 }
