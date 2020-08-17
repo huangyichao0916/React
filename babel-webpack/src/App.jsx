@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
+import './style.css';
 
 export default function App() {
     return (
-        <div>
-            this is app123
+        <div className="swiper-container">
+            this is app
+            <img src="/hyc.jpeg" alt="图片不见了"/>
         </div>
     )
 }
