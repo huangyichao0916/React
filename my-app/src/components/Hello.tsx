@@ -5,7 +5,7 @@ import {Dispatch} from 'redux';
 import {StoreState} from '../types';
 import {EnthusiasmAction,incrementEnthusiasmActionCreator,decrementEnthusiasmActionCreator} from '../actions';
 
-export interface Props{
+interface Props{
     name: string;
     enthusiasmLevel?: number;
     onIncrement:() => void;
@@ -51,4 +51,4 @@ export default connect(mapStateToProps,mapDispatchToProps)(Hello);
 
 function getExclamationMarks(numChars: number):string {
     return Array(numChars + 1).join('!');
-}
+} 
