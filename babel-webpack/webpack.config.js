@@ -2,12 +2,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = {
+    mode: 'development',
     entry: './src/index.js',
     resolve:{
         extensions: ['.js','.jsx'],
     },
     devServer: {//热更新
-        contentBase: './dist',
+        contentBase: './public',//决定去哪里查找资源
         hot: true,
     },
     module: {
