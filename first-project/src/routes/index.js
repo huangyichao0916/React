@@ -1,9 +1,10 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
+
 import Course from '@/pages/course/Course';
 import Discover from '@/pages/discover/Discover';
 import Mine from '@/pages/mine/Mine';
 import Study from '@/pages/study/Study';
-import {Redirect} from 'react-router-dom';
 import App from '@/App';
 import Account from '@/pages/account/Account';
 import Home from '@/pages/home/Home';
