@@ -1,0 +1,29 @@
+{
+  "name": "react-ssr",
+  "version": "1.0.0",
+  "description": "- vue和react经过webpack打包后就是一个单页应用 - 要等js把内容渲染到root节点上面去，白屏时间比较长，用户不能第一时间看到内容",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch build --exec node ./build/bundle.js",
+    "server": "webpack --config ./webpack.server.js --watch"
+  },
+  "keywords": [],
+  "author": "HYC",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "^5.1.3"
+  }
+}
