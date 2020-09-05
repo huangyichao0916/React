@@ -5,6 +5,8 @@ import Header from '../common/header';
 
 const app = express();
 
+app.use(express.static('public'))//把public映射成静态资源的目录
+
 app.get('*',(req,res) => {
     const root = <Header/>
     const htmlStr = renderToString(root);
@@ -18,6 +20,7 @@ app.get('*',(req,res) => {
         </head>
         <body>
             <div id="root">${htmlStr}</div>
+            <script src="/index.js"></script>
         </body>
         </html>
     `)

@@ -7,3 +7,6 @@
 ## SSR 服务端渲染
 - vue/react -> webpack -> 后端(node)
 - 解决了白屏问题，用户第一次访问html就可以看到内容
+
+- ReactDOM.hydrate()，让事件能够正常绑定到组件上面
+- ReactDOM.render() 和 ReactDOM.hydrate()的区别
