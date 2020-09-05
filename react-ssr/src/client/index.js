@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import Header from '../common/header'
+import {BrowserRouter} from 'react-router-dom'
+import routes from '../routes'
+import {renderRoutes} from 'react-router-config'
 
-function App(){
+function App() {
     return(
-        <Header/>
+        <BrowserRouter>
+            {renderRoutes(routes)}
+        </BrowserRouter>
     )
 }
 

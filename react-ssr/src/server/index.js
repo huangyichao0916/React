@@ -1,14 +1,20 @@
 import express from 'express';
 import React from 'react';
 import {renderToString} from 'react-dom/server'
-import Header from '../common/header';
+import {StaticRouter} from 'react-router-dom'
+import {renderRoutes} from 'react-router-config'
+import routes from '../routes'
 
 const app = express();
 
-app.use(express.static('public'))//把public映射成静态资源的目录
+app.use(express.static('public'))//把public映射成静态资源的目录,让script标签请求
 
 app.get('*',(req,res) => {
-    const root = <Header/>
+    const root = (
+        <StaticRouter location={req.url}>
+            {renderRoutes(routes)}
+        </StaticRouter>
+    )
     const htmlStr = renderToString(root);
     res.end(`
         <!DOCTYPE html>

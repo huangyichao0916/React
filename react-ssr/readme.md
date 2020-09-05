@@ -10,3 +10,11 @@
 
 - ReactDOM.hydrate()，让事件能够正常绑定到组件上面
 - ReactDOM.render() 和 ReactDOM.hydrate()的区别
+
+## 同构
+- 同构 Store(redux)
+- 同构 Router
+ 1. 在浏览器端，router是通过history属性完成的
+ 2. 在node端是没有history属性的
+ 3. 在服务端引入StaticRouter
+- 同构 组件
