@@ -57,31 +57,29 @@ export default function applyMiddleware<Ext1, Ext2, Ext3, Ext4, Ext5, S>(
 export default function applyMiddleware<Ext, S = any>(
   ...middlewares: Middleware<any, S, any>[]
 ): StoreEnhancer<{ dispatch: Ext }>
-export default function applyMiddleware(
-  ...middlewares: Middleware[]
-): StoreEnhancer<any> {
-  return (createStore: StoreEnhancerStoreCreator) => <S, A extends AnyAction>(
-    reducer: Reducer<S, A>,
-    preloadedState?: PreloadedState<S>
-  ) => {
-    const store = createStore(reducer, preloadedState)
-    let dispatch: Dispatch = () => {
-      throw new Error(
-        'Dispatching while constructing your middleware is not allowed. ' +
-          'Other middleware would not be applied to this dispatch.'
-      )
-    }
+export default 
 
-    const middlewareAPI: MiddlewareAPI = {
-      getState: store.getState,
-      dispatch: (action, ...args) => dispatch(action, ...args)
-    }
-    const chain = middlewares.map(middleware => middleware(middlewareAPI))
-    dispatch = compose<typeof dispatch>(...chain)(store.dispatch)
+function applyMiddleware(...middlewares: Middleware[]): StoreEnhancer<any> {
+  return (createStore: StoreEnhancerStoreCreator) => {
+    return <S, A extends AnyAction>(reducer: Reducer<S, A>,preloadedState?: PreloadedState<S>) => {
+      const store = createStore(reducer, preloadedState)
+      let dispatch: Dispatch = () => {
+        throw new Error(
+          'Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.'
+        )
+      }
 
-    return {
-      ...store,
-      dispatch
+      const middlewareAPI: MiddlewareAPI = {
+        getState: store.getState,
+        dispatch: (action, ...args) => dispatch(action, ...args)
+      }
+      const chain = middlewares.map(middleware => middleware(middlewareAPI))
+      dispatch = compose<typeof dispatch>(...chain)(store.dispatch)
+
+      return {
+        ...store,
+        dispatch
+      }
     }
   }
 }

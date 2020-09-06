@@ -88,6 +88,7 @@ export default function createStore<
       throw new Error('Expected the enhancer to be a function.')
     }
 
+    //参数包含enhancer，那么applyMiddleware将会接管createStore的创建过程
     return enhancer(createStore)(
       reducer,
       preloadedState as PreloadedState<S>

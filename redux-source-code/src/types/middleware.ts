@@ -24,7 +24,5 @@ export interface Middleware<
   S = any,
   D extends Dispatch = Dispatch
 > {
-  (api: MiddlewareAPI<D, S>): (
-    next: D
-  ) => (action: D extends Dispatch<infer A> ? A : never) => any
+  (api: MiddlewareAPI<D, S>): (next: D) => (action: D extends Dispatch<infer A> ? A : never) => any
 }
