@@ -8,7 +8,7 @@ const config = {
     extensions: ['.js', '.jsx']
   },
   // externals: {
-  //   react: 'react', //前面的是小写的，后面的是大写的
+  //   react: 'React', //前面的是小写的，后面的是大写的
   // },
 
   // optimization:{
