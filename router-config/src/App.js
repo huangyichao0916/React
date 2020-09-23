@@ -1,9 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import './App.css';
 import Demo from './demo'
+import Children from './children'
 
 function App() {
-  const [boo, setBoo] = useState(false);
+  // document.addEventListener('click',() => console.log('document'))
+  // console.log(document.querySelector('.children'))
+  // const [boo, setBoo] = useState(false);
 
   // const [xxx, setXxx] = useState(0)
 
@@ -13,9 +16,8 @@ function App() {
   // })
 
   return (
-    <div className="App">
-
-      <button 
+    <div className="App" onClick={() => console.log('app')}>
+      {/* <button 
       onClick={() => {
         setBoo(!boo)
         // setXxx(xxx + 1)
@@ -24,8 +26,9 @@ function App() {
         click
       </button>
       
-      {boo && <Demo />}
+      {boo && <Demo />} */}
 
+      <Children />
     </div>
   );
 }

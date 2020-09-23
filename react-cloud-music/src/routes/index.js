@@ -5,7 +5,7 @@ import BlankLayout from "../layouts/BlankLayout";
 
 const SuspenseComponent = Component => props => {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<h2>黄毅超</h2>}>
       <Component {...props}></Component>
     </Suspense>
   )
