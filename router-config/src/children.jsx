@@ -29,7 +29,11 @@ function Children(props) {
     const [myState, setMyState] = useState({ a: 0 })
     const { a } = myState;
     return (
-        <div className="children" onClick={() => console.log('children')}>
+        <div className="children" onClick={e => {
+            e.stopPropagation()
+            console.log('children')
+
+        }}>
             <button onClick={() => {
                 console.log('button')
             }}>click</button>
