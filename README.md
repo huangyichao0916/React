@@ -69,3 +69,5 @@ mapState: 返回一个对象 react-redux 会进行浅比较，阻止re-render
      **所以，除了React引发的事件处理，其他的setState都是同步调用**
 
  - setState的同步意味着，多个setState不会被覆盖
+ - 需要注意的是：如果是hooks使用setState并且使用了state作为参数的话，需要小心函数闭包的问题，这是class组件与函数组件
+   使用hooks的区别
