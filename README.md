@@ -50,7 +50,7 @@ mapState: 返回一个对象 react-redux 会进行浅比较，阻止re-render
     //useState这个hooks也可以接受函数作为参数，并且和class组件的this.setState一样，可以避免
     //state被覆盖
 
-    //需要注意的是
+    //需要注意的是 
   ```
 
 2. setState的同步异步问题
