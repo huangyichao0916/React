@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './mine.styl'
 import avatar from '@/assets/imgs/avatar.JPG';
+import imgg from '@/assets/imgs/account.png';
 import MineItem from './mineItem/MineItem'
 import Swiper from "swiper"
 import "swiper/css/swiper.min.css";
@@ -89,7 +90,7 @@ class Mine extends Component {
                         <div className="slider-container">
                             <div className="swiper-wrapper">
                                 <div className="swiper-slide">
-                                    <img src={avatar} alt="图片不见了" width="100%" height="100%" />
+                                    <img src={imgg} alt="图片不见了" width="100%" height="100%" />
                                 </div>
                             </div>
                         </div>
