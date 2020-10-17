@@ -4,7 +4,19 @@ import BScroll from "better-scroll"
 import styled from 'styled-components';
 import Loading from '../loading/index';
 import Loading2 from '../loading-v2/index';
-import { debounce } from "../../api/utils";
+
+const debounce = (func, delay) => {
+  let timer;
+  return function (...args) {
+    if(timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args);
+      clearTimeout(timer);
+    }, delay);
+  };
+};
 
 const ScrollContainer = styled.div`
   width: 100%;
@@ -165,52 +177,3 @@ Scroll.propTypes = {
 };
 
 export default Scroll;
-
-
-
-// 下为问题代码，以此为鉴
-// useEffect(() => {
-//   if(bScroll) return;
-//   const scroll = new BScroll(scrollContaninerRef.current, {
-//     scrollX: direction === "horizental",
-//     scrollY: direction === "vertical",
-//     probeType: 3,
-//     click: click,
-//     bounce:{
-//       top: bounceTop,
-//       bottom: bounceBottom
-//     }
-//   });
-//   setBScroll(scroll);
-//   if(pullUp) {
-//     scroll.on('scrollEnd', () => {
-//       //判断是否滑动到了底部
-//       if(scroll.y <= scroll.maxScrollY + 100){
-//         pullUp();
-//       }
-//     });
-//   }
-//   if(pullDown) {
-//     scroll.on('touchEnd', (pos) => {
-//       //判断用户的下拉动作
-//       if(pos.y > 50) {
-//         debounce(pullDown, 0)();
-//       }
-//     });
-//   }
-
-//   if(onScroll) {
-//     scroll.on('scroll', (scroll) => {
-//       onScroll(scroll);
-//     })
-//   }
-
-//   if(refresh) {
-//     scroll.refresh();
-//   }
-//   return () => {
-//     scroll.off('scroll');
-//     setBScroll(null);
-//   }
-//   // eslint-disable-next-line
-// }, []);
