@@ -63,6 +63,8 @@ function applyMiddleware(...middlewares: Middleware[]): StoreEnhancer<any> {
   return (createStore: StoreEnhancerStoreCreator) => {
     return <S, A extends AnyAction>(reducer: Reducer<S, A>,preloadedState?: PreloadedState<S>) => {
       const store = createStore(reducer, preloadedState)
+
+      //此dispatch不是store的dispatch
       let dispatch: Dispatch = () => {
         throw new Error(
           'Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.'
@@ -71,6 +73,7 @@ function applyMiddleware(...middlewares: Middleware[]): StoreEnhancer<any> {
 
       const middlewareAPI: MiddlewareAPI = {
         getState: store.getState,
+        //此dispatch也不是store的dispatch
         dispatch: (action, ...args) => dispatch(action, ...args)
       }
       const chain = middlewares.map(middleware => middleware(middlewareAPI))

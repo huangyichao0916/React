@@ -54,6 +54,7 @@ export default function bindActionCreators<
   N extends ActionCreatorsMapObject
 >(actionCreators: M, dispatch: Dispatch): N
 
+//代码
 export default function bindActionCreators(
   actionCreators: ActionCreator<any> | ActionCreatorsMapObject,
   dispatch: Dispatch

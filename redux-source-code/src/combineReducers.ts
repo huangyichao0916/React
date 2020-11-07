@@ -10,6 +10,7 @@ import {
 } from './types/reducers'
 import { CombinedState } from './types/store'
 
+//生成一条错误信息
 function getUndefinedStateErrorMessage(key: string, action: Action) {
   const actionType = action && action.type
   const actionDescription =
@@ -22,6 +23,7 @@ function getUndefinedStateErrorMessage(key: string, action: Action) {
   )
 }
 
+//生成一条警告信息
 function getUnexpectedStateShapeWarningMessage(
   inputState: object,
   reducers: ReducersMapObject,
@@ -74,6 +76,7 @@ function getUnexpectedStateShapeWarningMessage(
   }
 }
 
+//确认reducer能够接收undefined参数
 function assertReducerShape(reducers: ReducersMapObject) {
   Object.keys(reducers).forEach(key => {
     const reducer = reducers[key]
@@ -136,9 +139,13 @@ export default function combineReducers<M extends ReducersMapObject>(
   CombinedState<StateFromReducersMapObject<M>>,
   ActionFromReducersMapObject<M>
 >
+
+
+
 export default function combineReducers(reducers: ReducersMapObject) {
   const reducerKeys = Object.keys(reducers)
   const finalReducers: ReducersMapObject = {}
+  //监测各个reducer的类型，避免发生reducer是非函数的情况
   for (let i = 0; i < reducerKeys.length; i++) {
     const key = reducerKeys[i]
 
@@ -161,6 +168,7 @@ export default function combineReducers(reducers: ReducersMapObject) {
     unexpectedKeyCache = {}
   }
 
+  //确认reducer能够接收undefined作为state参数
   let shapeAssertionError: Error
   try {
     assertReducerShape(finalReducers)
@@ -168,10 +176,12 @@ export default function combineReducers(reducers: ReducersMapObject) {
     shapeAssertionError = e
   }
 
+  //return的这个函数就是最终的reducer了
   return function combination(
     state: StateFromReducersMapObject<typeof reducers> = {},
     action: AnyAction
   ) {
+    //先检验reducer是否合格
     if (shapeAssertionError) {
       throw shapeAssertionError
     }
@@ -188,6 +198,7 @@ export default function combineReducers(reducers: ReducersMapObject) {
       }
     }
 
+    //接下来的代码部分才是真正进行combineReducers的过程
     let hasChanged = false
     const nextState: StateFromReducersMapObject<typeof reducers> = {}
     for (let i = 0; i < finalReducerKeys.length; i++) {

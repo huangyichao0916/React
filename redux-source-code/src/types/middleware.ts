@@ -26,3 +26,14 @@ export interface Middleware<
 > {
   (api: MiddlewareAPI<D, S>): (next: D) => (action: D extends Dispatch<infer A> ? A : never) => any
 }
+
+// const myThunk = ({ dispatch, getState }) => next => action => {
+
+//   //如果action是一个函数，那么这次的dispatch将会在这里被阻断，然后跳入action函数里面，重新执行每一个dispatch
+//   if (typeof action === 'function') {
+//       return action(dispatch, getState);
+//   }
+
+//   //如果action不是函数，那么正常执行thunk函数
+//   return next(action);
+// };

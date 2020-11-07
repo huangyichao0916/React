@@ -57,6 +57,8 @@ export default function createStore<
   preloadedState?: PreloadedState<S>,
   enhancer?: StoreEnhancer<Ext, StateExt>
 ): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext
+
+//这个是createStore函数
 export default function createStore<
   S,
   A extends Action,
@@ -67,7 +69,7 @@ export default function createStore<
   preloadedState?: PreloadedState<S> | StoreEnhancer<Ext, StateExt>,
   enhancer?: StoreEnhancer<Ext, StateExt>
 ): Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext {
-  if (
+  if (//不能传入多个enhancer
     (typeof preloadedState === 'function' && typeof enhancer === 'function') ||
     (typeof enhancer === 'function' && typeof arguments[3] === 'function')
   ) {
@@ -78,13 +80,14 @@ export default function createStore<
     )
   }
 
+  //当preloadState没有传入而传入了enhancer时
   if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
     enhancer = preloadedState as StoreEnhancer<Ext, StateExt>
     preloadedState = undefined
   }
 
   if (typeof enhancer !== 'undefined') {
-    if (typeof enhancer !== 'function') {
+    if (typeof enhancer !== 'function') {//enhancer不是一个函数则报错
       throw new Error('Expected the enhancer to be a function.')
     }
 
@@ -95,15 +98,20 @@ export default function createStore<
     ) as Store<ExtendState<S, StateExt>, A, StateExt, Ext> & Ext
   }
 
-  if (typeof reducer !== 'function') {
+
+  /**
+   * 下面的内容是当store没有传入enhancer的时候才有的
+   */
+
+  if (typeof reducer !== 'function') {//reducer不是一个函数就抛出错误
     throw new Error('Expected the reducer to be a function.')
   }
 
-  let currentReducer = reducer
-  let currentState = preloadedState as S
-  let currentListeners: (() => void)[] | null = []
-  let nextListeners = currentListeners
-  let isDispatching = false
+  let currentReducer = reducer;
+  let currentState = preloadedState as S;
+  let currentListeners: (() => void)[] | null = [];
+  let nextListeners = currentListeners;
+  let isDispatching = false;//这是一个标记，如果这个值为true，那么有些操作是不能执行的，如getState
 
   /**
    * This makes a shallow copy of currentListeners so we can use
@@ -163,6 +171,7 @@ export default function createStore<
       throw new Error('Expected the listener to be a function.')
     }
 
+    //dispatch的时候是不能调用订阅函数的
     if (isDispatching) {
       throw new Error(
         'You may not call store.subscribe() while the reducer is executing. ' +
@@ -242,6 +251,7 @@ export default function createStore<
       throw new Error('Reducers may not dispatch actions.')
     }
 
+    //dispatch函数在计算新的state的期间，isDispatching的值为true
     try {
       isDispatching = true
       currentState = currentReducer(currentState, action)
