@@ -8,7 +8,14 @@ const { identifier } = require('babel-types')
 
 const plugin = {
     ImportDeclaration(path){
+        // console.log(path.node)
         if(!t.isImportDefaultSpecifier(path.node.specifiers[0])){//如果不是通过默认导入，就会对该节点进行操作
+
+            //测试代码
+            const program = path.findParent(p => p.isProgram());
+            const local = program.scope.generateUidIdentifier();
+            console.log(local)
+
             let identify = t.identifier('zip')
             // console.log(identify)
             let descs = [t.importDefaultSpecifier(identify)];//创建默认导入
@@ -30,4 +37,4 @@ const res = babel.transform(code,{
         }
     ]
 })
-console.log(res)
+// console.log(res)
