@@ -9,22 +9,28 @@
 
     https://webpack.docschina.org/configuration/externals/#externals
 
-2. optimization 
+2. optimization配置
  - ```js
     optimization:{
         splitChunks: {
             chunks:'all',//所有的import 、 async import() 、 sync import()
-            cacheGroups:{
-                vendors:{
+            cacheGroups:{//定义分组规则
+                vendors:{//满足某个规则，就会被分到一个组
                     test: /[\\/]node_modules[\\/]/,
                 }
             }
         },
     },
    ```
+ - 
 
 3. css提取
  - yarn add mini-css-extract-plugin -D
  - const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  - new MiniCssExtractPlugin()
  - use: [MiniCssExtractPlugin.loader, 'css-loader'],
+
+4. image压缩
+ - yarn add imagemin-webpack-plugin -D
+ - const ImageminPlugin = require('imagemin-webpack-plugin').default;
+ - new ImageminPlugin({test: /\.(jpe?g|png|gif|svg)$/i}),
