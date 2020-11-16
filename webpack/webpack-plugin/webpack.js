@@ -20,10 +20,10 @@ class Webpack {
 let options = {
   plugins: [new Plugin()]
 }
-let complier = new Webpack();
+let complier = new Webpack();//获取webpack的实例
 for (let p of options.plugins) {
   // 插件
-  p.apply(complier);
+  p.apply(complier);//插件实例拿到webpack的实例，然后在其内部注册事件，webpack运行的时候，就会执行这些插件的功能了
   // apply (complier) { complier.hooks.emit.tapXXXX }
 }
 complier.run();

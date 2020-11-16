@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const myPlugin = require('./myPlugin.js')
 
 const config = {
     mode: 'development',
@@ -28,8 +29,9 @@ const config = {
         new HtmlWebpackPlugin({
             template: './public/index.html',
             filename: 'index.html'
-        })
+        }),
         // new BundleAnalyzerPlugin()
+        // new myPlugin()
     ]
 }
 module.exports = config;
