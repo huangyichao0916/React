@@ -12,7 +12,7 @@ function App(props) {
       {renderRoutes(props.route.routes)}
       {/* <Footer /> */}
     </div>
-  );
+  ); 
 }
 
 export default App;
