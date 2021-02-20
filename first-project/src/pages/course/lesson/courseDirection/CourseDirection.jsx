@@ -13,7 +13,7 @@ const CourseDirection = (props) => {
         '运维&测试',
         '管理&效率',
         '职场软技能',
-        '面试专场',
+        '面试专场', 
     ];
     // console.log(items);
     items = items.map((i, index) => {
