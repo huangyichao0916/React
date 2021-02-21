@@ -16,6 +16,7 @@ const CourseDirection = (props) => {
         '面试专场', 
     ];
     // console.log(items);
+    //beta
     items = items.map((i, index) => {
         let isEvenNumber = index % 2 === 0 ? false : true;
         return (
