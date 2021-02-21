@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 
 // import axios from 'axios';
 // import { addDataToMinePageActionCreator } from '@/store/action';
-
+//master
 function myMid(midAPI) {
     // midAPI.dispatch()
     return function (nextDisp) {
